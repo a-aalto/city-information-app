@@ -1,0 +1,13 @@
+body {
+    font-family: "Roboto", sans-serif !important;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+h1 {
+    text-transform: uppercase;
+    font-weight: 900;
+}
+
+.container-fluid {
+    max-width: 600px;
+}
