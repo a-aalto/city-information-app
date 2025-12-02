@@ -5,8 +5,10 @@ $(document).ready(function () {
     $("#inputForm").on("submit", async function (event) {
         event.preventDefault();
 
+        // User input
         const city = $("#input").val().trim();
 
+        // Get weather data and country data and finally update the DOM with said data.
         try {
             const weatherData = await getWeatherInformation(city);
             const countryData = await getCountryDetails(weatherData.sys.country);
@@ -14,10 +16,11 @@ $(document).ready(function () {
             updateCityInformation(weatherData, countryData);
         }
         catch (error) {
+            console.log(error);
             alert("Something went wrong.");
         }
 
-        // reset user input in the form
+        // Reset user input in the form
         $("#input").val("");
     });
 });
@@ -51,6 +54,7 @@ async function getWeatherInformation(city) {
 
 }
 
+// Get country information based on the user input (the data from getWeatherInformation() also returns country code)
 async function getCountryDetails(countryCode) {
     try {
         const response = await axios.get(`https://restcountries.com/v3.1/alpha/${countryCode}`);
@@ -64,17 +68,19 @@ async function getCountryDetails(countryCode) {
     }
 }
 
+// Update the city information into DOM
 function updateCityInformation(weatherData, countryData) {
 
-    // get the currency information (key, value) into currencyObject
+    // Get the currency information (key, value) into currencyObject
     const currencyObject = Object.values(countryData[0].currencies)[0];
 
-    // create a string "currency" with the name of the currency + the symbol
+    // Create a string "currency" with the name of the currency + the symbol
     const currency = `${currencyObject.name} (${currencyObject.symbol})`;
 
-    // store the languages into a string
+    // Store the languages into a string
     const languages = Object.values(countryData[0].languages).join(", ");
 
+    // Update the DOM
     $("#city-information").html(`
         <div class="card mx-auto shadow-lg">
             <img src="https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png" class="card-img-top mx-auto" style="height: 100px; width: 100px;" alt="...">
