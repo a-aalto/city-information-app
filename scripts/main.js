@@ -1,27 +1,36 @@
 $(document).ready(function () {
 
-    // hide the spinner
+    // hide the spinner by default
     $("#card-spinner").hide();
 
+    // When user hits Enter or presses Submit button
     $("#inputForm").on("submit", async function (event) {
         event.preventDefault();
 
-        // User input
+        // Read the user input
         const city = $("#input").val().trim();
+
+        // If input field is left empty when submitting. Prevents useless API calls.
+        if (!city) {
+            alert("Please type in a city.");
+            return;
+        }
 
         // Get weather data and country data and finally update the DOM with said data. Show the spinner when API calls begin. Hide it when the data is ready to be displayed.
         try {
             $("#card-spinner").show();
+
             const weatherData = await getWeatherInformation(city);
             const countryData = await getCountryDetails(weatherData.sys.country);
 
-            $("#card-spinner").hide();
             updateCityInformation(weatherData, countryData);
-
         }
         catch (error) {
             console.log(error);
-            alert("Something went wrong.");
+            alert(error.message);
+        }
+        finally {
+            $("#card-spinner").hide();
         }
 
         // Reset user input in the form
@@ -29,7 +38,7 @@ $(document).ready(function () {
     });
 });
 
-// Get weather information based on the user input (city)
+// Get weather information based on the user input (city).
 async function getWeatherInformation(city) {
     try {
         const response = await axios.get(
@@ -45,14 +54,12 @@ async function getWeatherInformation(city) {
     }
     catch (error) {
         if (error.response && error.response.status === 404) {
-            alert("Please type a valid city name");
+            throw new Error("Please type in a valid city name.");
         }
         else {
-            alert("Something went wrong fetching weather data.");
+            throw new Error("Something went wrong fetching weather data.");
         }
-        throw error;
     }
-
 }
 
 // Get country information based on the user input (the data from getWeatherInformation() also returns country code)
@@ -63,9 +70,9 @@ async function getCountryDetails(countryCode) {
     }
     catch (error) {
         if (error.response && error.response.status === 404) {
-            alert("Something went wrong fetching country information.");
+            throw new Error("Something went wrong fetching country data.");
         }
-        throw error;
+        throw new Error("Unexpected issue occured fetching country data.");
     }
 }
 
