@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+    // hide the spinner
+    $("#card-spinner").hide();
+
     $("#inputForm").on("submit", async function (event) {
         event.preventDefault();
 
@@ -8,10 +11,13 @@ $(document).ready(function () {
 
         // Get weather data and country data and finally update the DOM with said data.
         try {
+            $("#card-spinner").show();
             const weatherData = await getWeatherInformation(city);
             const countryData = await getCountryDetails(weatherData.sys.country);
 
+            $("#card-spinner").hide();
             updateCityInformation(weatherData, countryData);
+            
         }
         catch (error) {
             console.log(error);
