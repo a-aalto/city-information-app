@@ -1,0 +1,23 @@
+{
+  "name": "js-ajax-with-libs",
+  "version": "1.0.0",
+  "description": "jQuery + Axios app. Hyödynnetty RESTful-apeja.<br> Projekti on toteutettu Laurea-ammattikorkeakoulun kurssilla \"Web-sovellusten kehittäminen Javascriptillä\"<br>",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a-aalto/city-information-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/a-aalto/city-information-app/issues"
+  },
+  "homepage": "https://github.com/a-aalto/city-information-app#readme",
+  "dependencies": {
+    "axios": "^1.13.2"
+  }
+}
