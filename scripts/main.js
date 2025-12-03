@@ -83,7 +83,7 @@ function updateCityInformation(weatherData, countryData) {
 
     // Update the DOM
     $("#city-information").html(`
-        <div class="card text-bg-primary mx-auto shadow-lg">
+        <div class="card text-bg-light mx-auto shadow-lg">
             <img src="https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png" class="card-img-top mx-auto" style="height: 100px; width: 100px;" alt="...">
             <div class="card-body">
                 <h5 class="card-title">${weatherData.name}</h5>
