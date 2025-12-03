@@ -18,6 +18,11 @@ $(document).ready(function () {
 
         // Get weather data and country data and finally update the DOM with said data. Show the spinner when API calls begin. Hide it when the data is ready to be displayed.
         try {
+
+            // reset city information when making new API requests (ie. when user searches for a new city)
+            $("#city-information").html("");
+
+            // show the spinner when making API calls (regarding the city)
             $("#card-spinner").show();
 
             const weatherData = await getWeatherInformation(city);
@@ -72,7 +77,7 @@ async function getCountryDetails(countryCode) {
         if (error.response && error.response.status === 404) {
             throw new Error("Something went wrong fetching country data.");
         }
-        throw new Error("Unexpected issue occured fetching country data.");
+        throw new Error("Unexpected issue occurred fetching country data.");
     }
 }
 
