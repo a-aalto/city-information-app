@@ -9,7 +9,7 @@ $(document).ready(function () {
         // User input
         const city = $("#input").val().trim();
 
-        // Get weather data and country data and finally update the DOM with said data.
+        // Get weather data and country data and finally update the DOM with said data. Show the spinner when API calls begin. Hide it when the data is ready to be displayed.
         try {
             $("#card-spinner").show();
             const weatherData = await getWeatherInformation(city);
@@ -17,7 +17,7 @@ $(document).ready(function () {
 
             $("#card-spinner").hide();
             updateCityInformation(weatherData, countryData);
-            
+
         }
         catch (error) {
             console.log(error);
