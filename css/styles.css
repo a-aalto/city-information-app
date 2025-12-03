@@ -11,3 +11,7 @@ h1 {
 .container-fluid {
     max-width: 600px;
 }
+
+.card {
+    background-color: #84d0d0;
+}
