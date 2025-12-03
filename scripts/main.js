@@ -1,5 +1,3 @@
-const OWM_API_KEY = "PLACEHOLDER";
-
 $(document).ready(function () {
 
     $("#inputForm").on("submit", async function (event) {
@@ -29,13 +27,10 @@ $(document).ready(function () {
 async function getWeatherInformation(city) {
     try {
         const response = await axios.get(
-            "https://api.openweathermap.org/data/2.5/weather",
+            "/.netlify/functions/OWM_API",
             {
                 params: {
-                    q: city,
-                    units: "metric",
-                    mode: "json",
-                    APPID: OWM_API_KEY
+                    city
                 }
             }
         );
