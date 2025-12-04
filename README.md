@@ -5,7 +5,7 @@ Projekti on toteutettu Laurea-ammattikorkeakoulun kurssilla "Web-sovellusten keh
 
 ### Verkkolinkit:
 Netlify: https://cityinfo-app.netlify.app<br>
-Projektin videoesittely: 
+Projektin videoesittely: https://youtu.be/ylQDqI8FKkg
 
 ### Työn jakautuminen
 Tekijä: Antti Aalto
