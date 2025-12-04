@@ -58,7 +58,7 @@ async function getWeatherInformation(city) {
         return response.data;
     }
     catch (error) {
-        if (error.response && error.response.status === 404) {
+        if (error.response && error.response.status === 404 || error.response && error.response.status === 500) {
             throw new Error("Please type in a valid city name.");
         }
         else {
